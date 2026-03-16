@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Join Quiz Session</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+text-align:center;
+padding:50px;
+}
+
+.box{
+background:white;
+padding:25px;
+width:350px;
+margin:auto;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+input{
+width:90%;
+padding:10px;
+margin:10px;
+}
+
+button{
+padding:10px 20px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Join Quiz Session</h2>
+
+<input type="text" id="name" placeholder="Full Name">
+
+<input type="text" id="id" placeholder="Student ID">
+
+<br>
+
+<button onclick="joinSession()">Join Session</button>
+
+</div>
+
+<script>
+
+const channel = new BroadcastChannel("quiz_room");
+
+const params = new URLSearchParams(window.location.search);
+
+const formLink = params.get("form");
+
+function joinSession(){
+
+let name = document.getElementById("name").value;
+let id = document.getElementById("id").value;
+
+if(name=="" || id==""){
+
+alert("Please enter Name and ID");
+
+return;
+
+}
+
+/* SEND DATA TO TEACHER DASHBOARD */
+
+channel.postMessage({
+
+type:"join",
+name:name,
+id:id
+
+});
+
+/* OPEN QUIZ */
+
+window.location.href = "file:///C:/Users/villa/OneDrive/Desktop/Q4%20-%20Comp8/teacher.html";
+
+}
+
+</script>
+
+</body>
+</html>
+```

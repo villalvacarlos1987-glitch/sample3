@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quiz Room Generator</title>
+
+<style>
+body{
+font-family: Arial;
+text-align:center;
+padding:20px;
+background:#f4f4f4;
+}
+
+form{
+background:white;
+padding:20px;
+border-radius:10px;
+width:400px;
+margin:auto;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input{
+width:95%;
+padding:8px;
+margin:8px 0;
+}
+
+button{
+padding:10px 15px;
+margin:10px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+#generate{background:#28a745;color:white;}
+</style>
+</head>
+
+<body>
+
+<h1>Teacher Quiz Room Setup</h1>
+
+<form>
+
+<input type="text" id="grade" placeholder="Grade Level">
+
+<input type="text" id="section" placeholder="Section">
+
+<input type="text" id="teacher" placeholder="Teacher Name">
+
+<input type="text" id="formlink" placeholder="Google Form Link">
+
+<input type="number" id="time" placeholder="Time in Minutes">
+
+<input type="text" id="generatedURL" placeholder="Student Generated URL" readonly>
+
+<button type="button" id="generate" onclick="generateLink()">Generate Link</button>
+
+</form>
+
+<script>
+
+function generateLink(){
+
+let grade = document.getElementById("grade").value;
+let section = document.getElementById("section").value;
+let teacher = document.getElementById("teacher").value;
+let formLink = document.getElementById("formlink").value;
+let time = document.getElementById("time").value;
+
+let url = "student.html?grade="+encodeURIComponent(grade)
++"&section="+encodeURIComponent(section)
++"&teacher="+encodeURIComponent(teacher)
++"&form="+encodeURIComponent(formLink)
++"&time="+time;
+
+document.getElementById("generatedURL").value = url;
+
+}
+
+</script>
+
+</body>
+</html>
